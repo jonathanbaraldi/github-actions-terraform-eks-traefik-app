@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "terraform-deploy-jonjon"
+    bucket = "vf-tfstate"
     key    = "devops-ninja-eks"
-    region = "us-east-2"
+    region = "us-east-1"
   }
 }
 
