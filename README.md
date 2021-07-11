@@ -1,4 +1,4 @@
-Apenas para testar.
+Apenas para testar o deploy EKS.
 
 # DevOps Ninja 
 
