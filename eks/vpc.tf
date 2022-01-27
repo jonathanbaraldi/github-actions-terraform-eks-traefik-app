@@ -1,20 +1,20 @@
 variable "region" {
-  default     = "us-east-2"
+  default     = "sa-east-1"
   description = "AWS region"
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = "sa-east-1"
 }
 
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "devops-ninja-eks-${random_string.suffix.result}"
+  cluster_name = "romaoeks-${random_string.suffix.result}"
 }
 
 resource "random_string" "suffix" {
-  length  = 8
+  length  = 4
   special = false
 }
 
@@ -22,7 +22,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.66.0"
 
-  name                 = "devops-ninja-vpc"
+  name                 = "romaoeks-vpc"
   cidr                 = "10.0.0.0/16"
   azs                  = data.aws_availability_zones.available.names
   private_subnets      = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]

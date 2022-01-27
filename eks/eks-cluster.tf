@@ -4,7 +4,7 @@ module "eks" {
   cluster_version = "1.18"
   subnets         = module.vpc.public_subnets
   tags = {
-    Environment = "training"
+    Environment = "teste"
     GithubRepo  = "terraform-aws-eks"
     GithubOrg   = "terraform-aws-modules"
   }
