@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "terraform-deploy-jonjon"
-    key    = "devops-ninja-eks"
+    bucket = "terraform-deploy-jr"
+    key    = "devops-eks"
     region = "us-east-2"
   }
 }
