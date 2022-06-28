@@ -83,7 +83,6 @@ $ cat ~/.kube/config
 
 
 
-
 # kubeconfig
 ```sh
 
