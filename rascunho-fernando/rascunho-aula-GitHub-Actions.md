@@ -255,3 +255,16 @@ PARA:
 Workflows aren’t being run on this forked repository
 
 Because this repository contained workflow files when it was forked, we have disabled them from running on this fork. Make sure you understand the configured workflows and their expected usage before enabling Actions on this repository.
+
+
+
+
+- Criada uma branch
+teste-branch-1
+
+
+git add .
+git commit -m "CURSO devops-mao-na-massa-docker-kubernetes-rancher --- AULA 58. GitHub Actions - Terraform + EKS"
+eval $(ssh-agent -s)
+ssh-add /home/fernando/.ssh/chave-debian10-github
+git push
