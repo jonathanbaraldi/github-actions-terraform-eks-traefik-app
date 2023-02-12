@@ -341,3 +341,82 @@ git commit -m "CURSO devops --- AULA 58. GitHub Actions - Ajustado arquivo na pa
 eval $(ssh-agent -s)
 ssh-add /home/fernando/.ssh/chave-debian10-github
 git push
+
+
+
+- OK, funcionou, agora chamou os Checks do PR:
+
+Terraform CI on: pull_request 7
+Terraform
+Terraform
+failed Feb 11, 2023 in 9s
+3s
+
+
+- ERRO
+
+~~~~bash
+1s
+2s
+Run terraform init
+  terraform init
+  shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+  env:
+    TERRAFORM_CLI_PATH: /home/runner/work/_temp/dc224b8c-bfc0-4a26-9ed0-d4201a252ac5
+    AWS_ACCESS_KEY_ID: ***
+    AWS_SECRET_ACCESS_KEY: ***
+/home/runner/work/_temp/dc224b8c-bfc0-4a26-9ed0-d4201a252ac5/terraform-bin init
+Initializing modules...
+Downloading registry.terraform.io/terraform-aws-modules/eks/aws 19.7.0 for eks...
+- eks in .terraform/modules/eks
+- eks.eks_managed_node_group in .terraform/modules/eks/modules/eks-managed-node-group
+- eks.eks_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data
+- eks.fargate_profile in .terraform/modules/eks/modules/fargate-profile
+Downloading registry.terraform.io/terraform-aws-modules/kms/aws 1.1.0 for eks.kms...
+- eks.kms in .terraform/modules/eks.kms
+- eks.self_managed_node_group in .terraform/modules/eks/modules/self-managed-node-group
+- eks.self_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data
+Downloading registry.terraform.io/terraform-aws-modules/vpc/aws 2.66.0 for vpc...
+- vpc in .terraform/modules/vpc
+╷
+│ Error: Unsupported Terraform Core version
+│ 
+│   on versions.tf line 34, in terraform:
+│   34:   required_version = "~> 0.14"
+│ 
+│ This configuration does not support Terraform version 1.3.8. To proceed,
+│ either choose another supported Terraform version or update this version
+│ constraint. Version constraints are normally set for good reason, so
+│ updating the constraint may lead to other errors or unexpected behavior.
+╵
+
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Error: Terraform exited with code 1.
+Error: Process completed with exit code 1.
+~~~~
+
+
+
+
+
+
+- Ajustando arquivo de versões:
+eks/versions.tf
+DE:
+required_version = "~> 0.14"
+PARA:
+required_version = "1.3.8"
+
+
+- Efetuando novo push:
+
+git add .
+git commit -m "CURSO devops --- AULA 58. GitHub Actions - Ajustado version do Terraform."
+eval $(ssh-agent -s)
+ssh-add /home/fernando/.ssh/chave-debian10-github
+git push
