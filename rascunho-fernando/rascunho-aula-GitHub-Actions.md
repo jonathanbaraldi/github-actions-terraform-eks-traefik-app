@@ -81,3 +81,55 @@ https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app
 
 
 - Necessário garantir as permissões necessárias no usuário dono das AWS Keys, senão, o Github Actions não vai conseguir provisionar a infra do Cluster EKS.
+
+
+# Permissões IAM
+
+https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html
+
+https://docs.aws.amazon.com/eks/latest/userguide/security_iam_id-based-policy-examples.html#policy_example3
+
+- Policy original:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:DescribeNodegroup",
+                "eks:ListNodegroups",
+                "eks:DescribeCluster",
+                "eks:ListClusters",
+                "eks:AccessKubernetesApi",
+                "ssm:GetParameter",
+                "eks:ListUpdates",
+                "eks:ListFargateProfiles"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+
+
+- Criei uma versão personalizad, mais permissiva:
+
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:*",
+                "ssm:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
