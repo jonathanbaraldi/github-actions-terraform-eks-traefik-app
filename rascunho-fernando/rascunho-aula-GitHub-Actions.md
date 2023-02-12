@@ -14,6 +14,16 @@ git push
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------
+## RESUMO - Manual do projeto
+
+- AWS Keys, ajustar. Cadastrar nas Secrets do repo do Github.
+- Criar bucket no S3 na mesma região que o projeto. Ajustar o manifesto de providers, colocando este bucket.
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
 ## AWS Keys
 
 - ANTES:
@@ -523,8 +533,89 @@ Error refreshing state: AccessDenied: Access Denied
 	status code: 403, request id: Z4Y3P8Z3VV629JJN, host id: QKmME3Qa9kMT7b7LPAQ7sGiDTOFxi7oeVzBccso7GjDk7z9Rm8z37AfS4ke8WeOnIcYfX8a5sFk=
 
 
+- Ajustar a policy do usuário não resolveu.
+
+
+
+
+
+
 - Criado bucket no S3:
 github-actions-terraform-eks-traefik-app-fernandomuller
 
+- Bucket foi criado na mesma região que estará o projeto.
+
 - Ajustado manifesto do providers
 eks/providers.tf
+
+
+- Commitando:
+
+git add .
+git commit -m "AULA 58. GitHub Actions - Terraform + EKS. Ajustando o provider, criado um novo bucket no S3."
+eval $(ssh-agent -s)
+ssh-add /home/fernando/.ssh/chave-debian10-github
+git push
+
+- RESOLVIDO!
+passou do step de "Terraform init"
+
+
+
+
+
+
+- Novo erro:
+step:
+"Run actions/github-script@0.9.0"
+
+~~~~bash
+4s
+0s
+Run actions/github-script@0.9.0
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+RequestError [HttpError]: Resource not accessible by integration
+Error: Resource not accessible by integration
+    at /home/runner/work/_actions/actions/github-script/0.9.0/dist/index.js:8705:23
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  status: 403,
+  headers: {
+    'access-control-allow-origin': '*',
+    'access-control-expose-headers': 'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset',
+    connection: 'close',
+    'content-encoding': 'gzip',
+    'content-security-policy': "default-src 'none'",
+    'content-type': 'application/json; charset=utf-8',
+    date: 'Sun, 12 Feb 2023 23:46:50 GMT',
+    'referrer-policy': 'origin-when-cross-origin, strict-origin-when-cross-origin',
+    server: 'GitHub.com',
+    'strict-transport-security': 'max-age=31536000; includeSubdomains; preload',
+    'transfer-encoding': 'chunked',
+    vary: 'Accept-Encoding, Accept, X-Requested-With',
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'deny',
+    'x-github-api-version-selected': '2022-11-28',
+    'x-github-media-type': 'github.v3',
+    'x-github-request-id': 'A100:5A28:3E58C41:807C26B:63E97A6A',
+    'x-ratelimit-limit': '1000',
+    'x-ratelimit-remaining': '999',
+    'x-ratelimit-reset': '1676249210',
+    'x-ratelimit-resource': 'core',
+    'x-ratelimit-used': '1',
+    'x-xss-protection': '0'
+  },
+  request: {
+    method: 'POST',
+    url: 'https://api.github.com/repos/fernandomullerjr/github-actions-terraform-eks-traefik-app/issues/1/comments',
+    headers: {
+      accept: 'application/vnd.github.-preview+json',
+      'user-agent': 'actions/github-script octokit.js/16.43.1 Node.js/12.22.7 (Linux 5.15; x64)',
+      authorization: 'token [REDACTED]',
+      'content-type': 'application/json; charset=utf-8'
+    },
+    body: '{"body":"#### Terraform Format and Style 🖌`success`\\n#### Terraform Initialization ⚙️`success`\\n#### Terraform Plan 📖`failure`\\n\\n<details><summary>Show Plan</summary>\\n\\n```terraform\\n```\\n\\n</details>\\n\\n*Pusher: @fernandomullerjr, Action: `pull_request`*"}',
+    request: { hook: [Function: bound bound register], validate: [Object] }
+  },
+  documentation_url: 'https://docs.github.com/rest/reference/issues#create-an-issue-comment'
+}
+~~~~
