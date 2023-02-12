@@ -268,3 +268,76 @@ git commit -m "CURSO devops-mao-na-massa-docker-kubernetes-rancher --- AULA 58. 
 eval $(ssh-agent -s)
 ssh-add /home/fernando/.ssh/chave-debian10-github
 git push
+
+
+git push --set-upstream origin teste-branch-1
+
+
+fernando@debian10x64:~/cursos/terraform/github-actions-terraform-eks-traefik-app$ git push --set-upstream origin teste-branch-1
+
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 464 bytes | 464.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote:
+remote: Create a pull request for 'teste-branch-1' on GitHub by visiting:
+remote:      https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/new/teste-branch-1
+remote:
+To github.com:fernandomullerjr/github-actions-terraform-eks-traefik-app.git
+ * [new branch]      teste-branch-1 -> teste-branch-1
+Branch 'teste-branch-1' set up to track remote branch 'teste-branch-1' from 'origin'.
+fernando@debian10x64:~/cursos/terraform/github-actions-terraform-eks-traefik-app$
+fernando@debian10x64:~/cursos/terraform/github-actions-terraform-eks-traefik-app$
+
+
+ teste-branch-1 had recent pushes less than a minute ago 
+
+
+
+- Actions
+ativado Workflows
+"There are no workflow runs yet."
+
+
+- Gerado PR
+https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/1
+
+- PR não tem os "Checks" esperados:
+    Workflow runs completed with no jobs
+
+
+
+
+
+
+
+- Ajustando arquivo da pasta "eks", ajustado o outputs, apenas com a finalidade de triggar a pipeline.
+
+~~~~bash
+fernando@debian10x64:~/cursos/terraform/github-actions-terraform-eks-traefik-app$ git status
+On branch teste-branch-1
+Your branch is up to date with 'origin/teste-branch-1'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   eks/.infracost/terraform_modules/manifest.json
+        modified:   eks/outputs.tf
+        modified:   rascunho-fernando/rascunho-aula-GitHub-Actions.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+fernando@debian10x64:~/cursos/terraform/github-actions-terraform-eks-traefik-app$
+~~~~
+
+
+- Efetuando novo push:
+
+git add .
+git commit -m "CURSO devops --- AULA 58. GitHub Actions - Ajustado arquivo na pasta EKS, visando trigger da Pipeline e ocorrência de Checks no PR."
+eval $(ssh-agent -s)
+ssh-add /home/fernando/.ssh/chave-debian10-github
+git push
