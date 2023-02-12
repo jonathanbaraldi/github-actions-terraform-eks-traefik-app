@@ -133,3 +133,125 @@ https://docs.aws.amazon.com/eks/latest/userguide/security_iam_id-based-policy-ex
     ]
 }
 ```
+
+
+
+
+- Criando policy no IAM:
+
+eks-politica-permite-terraform-github-actions
+Permite que o Github Actions crie a estrutura do EKS via Terraform
+arn:aws:iam::261106957109:policy/eks-politica-permite-terraform-github-actions
+
+- Atrelada ao grupo:
+arn:aws:iam::261106957109:group/devops-admin
+
+
+
+# Github
+
+- Ajustar as settings do Repositório
+ir em Secrets das Actions
+https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/settings/secrets/actions
+
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+
+cadastradas!
+
+
+
+
+
+# Pipeline
+
+- Agora vamos trabalhar com o arquivo do pipeline:
+.github/workflows/eks.yaml
+
+- Sempre que houver alteração na pasta "eks", ele vai triggar a pipeline, devido a linha:
+eks/**
+
+
+- Depois, nos steps
+ele usa um Ubuntu, sobe um Terraform
+Faz um Terraform Init usando as credenciais que cadastramos no repo
+
+~~~~yaml
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      id: init
+      run: terraform init
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+~~~~
+
+
+
+
+
+# Terraform
+
+- Ajustando o manifesto do eks-cluster
+eks/eks-cluster.tf
+Colocando a familia "t3a.micro" no lugar das small e medium
+
+DE:
+
+~~~~h
+  worker_groups = [
+    {
+      name                          = "worker-group-1"
+      instance_type                 = "t2.small"
+      additional_userdata           = "echo foo bar"
+      asg_desired_capacity          = 1
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+    },
+    {
+      name                          = "worker-group-2"
+      instance_type                 = "t2.medium"
+      additional_userdata           = "echo foo bar"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      asg_desired_capacity          = 1
+    },
+  ]
+}
+~~~~
+
+
+PARA:
+
+~~~~h
+  worker_groups = [
+    {
+      name                          = "worker-group-1"
+      instance_type                 = "t3a.micro"
+      additional_userdata           = "echo foo bar"
+      asg_desired_capacity          = 1
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+    },
+    {
+      name                          = "worker-group-2"
+      instance_type                 = "t3a.micro"
+      additional_userdata           = "echo foo bar"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      asg_desired_capacity          = 1
+    },
+  ]
+}
+~~~~
+
+
+
+
+
+
+
+
+
+
+# Actions
+
+Workflows aren’t being run on this forked repository
+
+Because this repository contained workflow files when it was forked, we have disabled them from running on this fork. Make sure you understand the configured workflows and their expected usage before enabling Actions on this repository.
