@@ -57,6 +57,8 @@ buscou os buckets corretos agora!
 -----------------------------------------------------------------------------------------------------------------------------------------------
 ## 58. GitHub Actions - Terraform + EKS
 
+- Usar o material do README do Jonathan:
+/home/fernando/cursos/terraform/github-actions-terraform-eks-traefik-app/README.md
 
 - Efetuado fork do repo
 
@@ -64,4 +66,18 @@ Link do repo forkado:
 https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app
 <https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app>
 
-/home/fernando/cursos/terraform/github-actions-terraform-eks-traefik-app/.github/workflows/eks.yaml
+- Arquivo do Github Actions, com os steps:
+  /home/fernando/cursos/terraform/github-actions-terraform-eks-traefik-app/.github/workflows/eks.yaml
+
+
+
+## Roteiro
+
+- Repositorio
+  - AWS Access Keys
+  - IAM Permission
+- Github Actions - Pipeline
+- EKS 
+
+
+- Necessário garantir as permissões necessárias no usuário dono das AWS Keys, senão, o Github Actions não vai conseguir provisionar a infra do Cluster EKS.
