@@ -467,3 +467,22 @@ Error: Process completed with exit code 1.
 
 # PENDENTE
 - Erro de "AccessDenied"
+
+
+
+
+
+
+
+
+
+# Dia 12/02/2023
+
+All checks have failed
+1 failing check
+@github-actions
+Terraform CI / Terraform (pull_request) Failing after 6s 
+
+
+
+Error refreshing state: AccessDenied: Access Denied
