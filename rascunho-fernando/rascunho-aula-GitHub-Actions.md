@@ -420,3 +420,50 @@ git commit -m "CURSO devops --- AULA 58. GitHub Actions - Ajustado version do Te
 eval $(ssh-agent -s)
 ssh-add /home/fernando/.ssh/chave-debian10-github
 git push
+
+
+
+- NOVO ERRO
+step do "Terraform Init"
+
+~~~~bash
+1s
+1s
+4s
+Run terraform init
+/home/runner/work/_temp/88fa721c-49f1-40f8-9693-de0ae11073a3/terraform-bin init
+Initializing modules...
+Downloading registry.terraform.io/terraform-aws-modules/eks/aws 19.7.0 for eks...
+- eks in .terraform/modules/eks
+- eks.eks_managed_node_group in .terraform/modules/eks/modules/eks-managed-node-group
+- eks.eks_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data
+- eks.fargate_profile in .terraform/modules/eks/modules/fargate-profile
+Downloading registry.terraform.io/terraform-aws-modules/kms/aws 1.1.0 for eks.kms...
+- eks.kms in .terraform/modules/eks.kms
+- eks.self_managed_node_group in .terraform/modules/eks/modules/self-managed-node-group
+- eks.self_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data
+Downloading registry.terraform.io/terraform-aws-modules/vpc/aws 2.66.0 for vpc...
+- vpc in .terraform/modules/vpc
+
+Initializing the backend...
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Error refreshing state: AccessDenied: Access Denied
+	status code: 403, request id: A8X4TFE71JSQ7QJS, host id: dHxJqdfqLARZyHKay+w6MW6eNnwJCp3MS6vqlOg/RwLN+YvMbCA1V+PJYyVccoU4VgIpM/+KKtI=
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Error: Terraform exited with code 1.
+Error: Process completed with exit code 1.
+~~~~
+
+
+- Erro de "AccessDenied"
+
+
+# PENDENTE
+- Erro de "AccessDenied"
