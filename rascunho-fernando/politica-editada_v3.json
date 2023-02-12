@@ -5,6 +5,8 @@
             "Effect": "Allow",
             "Action": [
                 "eks:*",
+                "s3:*",
+                "dynamodb:*",
                 "ssm:*"
             ],
             "Resource": "*"

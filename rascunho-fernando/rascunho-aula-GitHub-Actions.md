@@ -486,3 +486,45 @@ Terraform CI / Terraform (pull_request) Failing after 6s
 
 
 Error refreshing state: AccessDenied: Access Denied
+
+
+
+
+- Ajustada a politica
+arn:aws:iam::261106957109:policy/eks-politica-permite-terraform-github-actions
+ADICIONADAS permissões de s3 e dynamodb
+
+~~~~YAML
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:*",
+                "s3:*",
+                "dynamodb:*",
+                "ssm:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+~~~~
+
+
+- Segue com erro:
+
+Initializing the backend...
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Error refreshing state: AccessDenied: Access Denied
+	status code: 403, request id: Z4Y3P8Z3VV629JJN, host id: QKmME3Qa9kMT7b7LPAQ7sGiDTOFxi7oeVzBccso7GjDk7z9Rm8z37AfS4ke8WeOnIcYfX8a5sFk=
+
+
+- Criado bucket no S3:
+github-actions-terraform-eks-traefik-app-fernandomuller
+
+- Ajustado manifesto do providers
+eks/providers.tf
