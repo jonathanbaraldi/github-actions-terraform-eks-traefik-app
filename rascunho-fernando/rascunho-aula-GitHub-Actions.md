@@ -18,7 +18,7 @@ git push
 
 - AWS Keys, ajustar. Cadastrar nas Secrets do repo do Github.
 - Criar bucket no S3 na mesma região que o projeto. Ajustar o manifesto de providers, colocando este bucket.
-- Criar 1 Token no Github, para uso no "actions/github-script@0.9.0". Criar a Secret chamada "GITHUB_TOKEN" com o valor do Token.
+- Criar 1 Token no Github, para uso no "actions/github-script@0.9.0". 
 
 
 
@@ -715,3 +715,51 @@ When you enable GitHub Actions, GitHub installs a GitHub App on your repository.
 Before each job begins, GitHub fetches an installation access token for the job. The GITHUB_TOKEN expires when a job finishes or after a maximum of 24 hours.
 
 The token is also available in the github.token context. For more information, see "Contexts."
+
+
+
+
+
+
+
+- Não é necessário criar 1 Secret com o valor do Token, conforme a DOC acima.
+
+
+- Check segue com erro:
+Error: Resource not accessible by integration
+
+
+
+
+
+
+
+
+
+Workflow permissions
+
+Choose the default permissions granted to the GITHUB_TOKEN when running workflows in this repository. You can specify more granular permissions in the workflow using YAML. Learn more.
+Workflows have read and write permissions in the repository for all scopes.
+Workflows have read permissions in the repository for the contents and packages scopes only.
+
+
+
+
+- Estava com:
+Workflows have read permissions in the repository for the contents and packages scopes only.
+
+- Ajustado para:
+Workflows have read and write permissions in the repository for all scopes.
+
+- Marcada opção que permite que as Actions criem e aprovem PR.
+
+
+
+
+
+
+git add .
+git commit -m "AULA 58. GitHub Actions - Terraform + EKS, Novo teste do Check, ajustadas as permissões dos Actions no repositório!"
+eval $(ssh-agent -s)
+ssh-add /home/fernando/.ssh/chave-debian10-github
+git push
