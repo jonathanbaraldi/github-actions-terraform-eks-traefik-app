@@ -814,7 +814,15 @@ Error: Process completed with exit code 1.
 ~~~~
 
 
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
 # PENDENTE
 - Tratar erros no Terraform Plan
 https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/1/checks
 <https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/1/checks>
+- Fazer merge da branch "teste-branch-1" com a branch "main", para triggar o apply do Terraform.
+- Video continua em:
+16:19h
+na criação do apply
