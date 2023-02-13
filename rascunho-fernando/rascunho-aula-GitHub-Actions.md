@@ -16,10 +16,11 @@ git push
 -----------------------------------------------------------------------------------------------------------------------------------------------
 ## RESUMO - Manual do projeto
 
+- Trigger são PR's e commits que tenham modificações em arquivos da pasta eks(manifestos do Terraform do Cluster EKS).
 - AWS Keys, ajustar. Cadastrar nas Secrets do repo do Github.
 - Criar bucket no S3 na mesma região que o projeto. Ajustar o manifesto de providers, colocando este bucket.
 - Criar 1 Token no Github, para uso no "actions/github-script@0.9.0". 
-
+- Habilitar permissões dos Actions nas settings do repositório. Marcar "Workflows have read and write permissions in the repository for all scopes."
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -732,7 +733,8 @@ Error: Resource not accessible by integration
 
 
 
-
+https://stackoverflow.com/questions/70435286/resource-not-accessible-by-integration-on-github-post-repos-owner-repo-ac
+configure permissions in Actions settings
 
 
 
@@ -763,3 +765,56 @@ git commit -m "AULA 58. GitHub Actions - Terraform + EKS, Novo teste do Check, a
 eval $(ssh-agent -s)
 ssh-add /home/fernando/.ssh/chave-debian10-github
 git push
+
+
+
+
+- Verificando o PR e os Checks
+existem erros no step do "Terraform Plan"
+Error: Terraform exited with code 1.
+Error: Process completed with exit code 1.
+
+
+- Detalhado:
+
+~~~~bash
+0s
+4s
+Run terraform plan -no-color
+/home/runner/work/_temp/cb4e874d-bebe-4e0f-b55f-711c6fb52170/terraform-bin plan -no-color
+
+Error: Unsupported argument
+
+  on eks-cluster.tf line 5, in module "eks":
+   5:   subnets         = module.vpc.public_subnets
+
+An argument named "subnets" is not expected here.
+
+Error: Unsupported argument
+
+  on eks-cluster.tf line 14, in module "eks":
+  14:   workers_group_defaults = {
+
+An argument named "workers_group_defaults" is not expected here.
+
+Error: Unsupported argument
+
+  on eks-cluster.tf line 18, in module "eks":
+  18:   worker_groups = [
+
+An argument named "worker_groups" is not expected here.
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Error: Terraform exited with code 1.
+Error: Process completed with exit code 1.
+~~~~
+
+
+# PENDENTE
+- Tratar erros no Terraform Plan
+https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/1/checks
+<https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/1/checks>
