@@ -18,7 +18,7 @@ git push
 
 - AWS Keys, ajustar. Cadastrar nas Secrets do repo do Github.
 - Criar bucket no S3 na mesma região que o projeto. Ajustar o manifesto de providers, colocando este bucket.
-
+- Criar 1 Token no Github, para uso no "actions/github-script@0.9.0". Criar a Secret chamada "GITHUB_TOKEN" com o valor do Token.
 
 
 
@@ -619,3 +619,99 @@ Error: Resource not accessible by integration
   documentation_url: 'https://docs.github.com/rest/reference/issues#create-an-issue-comment'
 }
 ~~~~
+
+
+
+
+- Erro
+Error: Resource not accessible by integration
+
+
+- TSHOOT
+<https://dev.to/callmekatootie/debug-resource-not-accessible-by-integration-error-when-working-with-githubs-graphql-endpoint-5bim>
+This error basically talks about a permission issue. When working with Github apps, you may not have set the necessary permission to access the resource you need. Hence the Resource not accessible by integration error.
+
+- Exemplo deste site:
+
+>So - how would one go about finding out which permission is needed in this case?
+
+>The graphql documentation does not talk about this - weirdly, one first needs to instead go to their REST api documentation. In our case, since we are interested in the count of the collaborators on a repository, we would look for the REST api that fetches the collaborators for a repository. That would be the list repository collaborators endpoint:
+>GET /repos/{owner}/{repo}/collaborators
+
+>Now that we know the endpoint path, we then head over to the permissions required for Github Apps page and proceed to locate this endpoint (Do a Ctrl / Cmd + F in your browser and search for the endpoint you need).
+
+>We find the above endpoint under the Collaborators permission list:
+
+>Collaborators Permission List
+
+>which, if you scroll up, falls under the Metadata permissions. Boom! There you go! Head over to your Github App and under Repository permissions, provide read-only access for the Metadata permissions:
+
+>Github App Repository Permissions
+
+>That should resolve your "Resource not accessible by integration" issue.
+
+
+
+
+
+- No meu caso, é provável que seja o comment, conforme:
+
+~~~~bash
+    method: 'POST',
+    url: 'https://api.github.com/repos/fernandomullerjr/github-actions-terraform-eks-traefik-app/issues/1/comments',
+~~~~
+
+- Documentação:
+<https://docs.github.com/en/rest/overview/permissions-required-for-github-apps?apiVersion=2022-11-28>
+exemplo:
+POST /repos/{owner}/{repo}/comments/{comment_id}/reactions (write)
+
+<https://docs.github.com/en/rest/reactions?apiVersion=2022-11-28#create-reaction-for-a-commit-comment>
+
+
+https://docs.github.com/en/developers/apps
+
+
+- Criado 1 Token no Github:
+FernandoTesteTerraform
+
+
+
+
+
+    - uses: actions/github-script@0.9.0
+      if: github.event_name == 'pull_request'
+      env:
+        PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+
+
+
+
+
+
+
+## Automatic token authentication
+
+<https://docs.github.com/en/actions/security-guides/automatic-token-authentication>
+
+In this article
+
+    About the GITHUB_TOKEN secret
+    Using the GITHUB_TOKEN in a workflow
+    Permissions for the GITHUB_TOKEN
+
+GitHub provides a token that you can use to authenticate on behalf of GitHub Actions.
+About the GITHUB_TOKEN secret
+
+At the start of each workflow run, GitHub automatically creates a unique GITHUB_TOKEN secret to use in your workflow. You can use the GITHUB_TOKEN to authenticate in a workflow run.
+
+When you enable GitHub Actions, GitHub installs a GitHub App on your repository. The GITHUB_TOKEN secret is a GitHub App installation access token. You can use the installation access token to authenticate on behalf of the GitHub App installed on your repository. The token's permissions are limited to the repository that contains your workflow. For more information, see "Permissions for the GITHUB_TOKEN."
+
+Before each job begins, GitHub fetches an installation access token for the job. The GITHUB_TOKEN expires when a job finishes or after a maximum of 24 hours.
+
+The token is also available in the github.token context. For more information, see "Contexts."
