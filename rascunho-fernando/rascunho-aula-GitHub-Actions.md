@@ -826,3 +826,9 @@ https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pul
 - Video continua em:
 16:19h
 na criação do apply
+- Ver sobre commits e histórico no Profile, na cobrinha.
+
+
+
+
+teste3
