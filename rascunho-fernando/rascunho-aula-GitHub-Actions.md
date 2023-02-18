@@ -984,3 +984,13 @@ https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pul
 16:19h
 na criação do apply
 - Ver sobre commits e histórico no Profile, na cobrinha.
+
+
+
+
+
+
+~>: Allows only the rightmost version component to increment. For example, to allow new patch releases within a specific minor release, use the full version number: ~> 1.0.4 will allow installation of 1.0.5 and 1.0.10 but not 1.1.0. This is usually called the pessimistic constraint operator.
+
+
+
