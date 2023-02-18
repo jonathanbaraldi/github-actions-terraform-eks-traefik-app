@@ -838,3 +838,14 @@ teste3
 
 # Dia 17
 ver sobre versão do terraform nos providers
+
+
+
+
+
+- Ajustando arquivo de versões:
+eks/versions.tf
+DE:
+required_version = "~> 0.14"
+PARA:
+required_version = "1.3.8"
