@@ -947,7 +947,7 @@ Error: Process completed with exit code 1.
 
 
 
-
+- Testando a versão especifica no pipeline do Actions, para ele nao pegar a ultima versão do Terraform:
 
 ~> 0.14
 
@@ -958,3 +958,26 @@ Error: Process completed with exit code 1.
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 0.14.0
+
+
+
+
+
+
+
+
+
+# PENDENTE
+- Ver sobre TERRAFORM VERSION.
+- Pegar versão especifica no pipeline do Actions, para ele nao pegar a ultima versão do Terraform:
+            with:
+              terraform_version: 0.14.0
+- PR com problemas, ficando em QUEUED os jobs, devido incidente no Github.
+- Tratar erros no Terraform Plan
+https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/1/checks
+<https://github.com/fernandomullerjr/github-actions-terraform-eks-traefik-app/pull/1/checks>
+- Fazer merge da branch "teste-branch-1" com a branch "main", para triggar o apply do Terraform.
+- Video continua em:
+16:19h
+na criação do apply
+- Ver sobre commits e histórico no Profile, na cobrinha.
