@@ -849,3 +849,33 @@ DE:
 required_version = "~> 0.14"
 PARA:
 required_version = "1.3.8"
+
+
+
+
+~~~~bash
+Run terraform init
+/home/runner/work/_temp/f15a73aa-cddd-4d60-b31d-54eb33ba489a/terraform-bin init
+Initializing modules...
+Downloading registry.terraform.io/terraform-aws-modules/eks/aws 19.10.0 for eks...
+- eks in .terraform/modules/eks
+- eks.eks_managed_node_group in .terraform/modules/eks/modules/eks-managed-node-group
+- eks.eks_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data
+- eks.fargate_profile in .terraform/modules/eks/modules/fargate-profile
+Downloading registry.terraform.io/terraform-aws-modules/kms/aws 1.1.0 for eks.kms...
+- eks.kms in .terraform/modules/eks.kms
+- eks.self_managed_node_group in .terraform/modules/eks/modules/self-managed-node-group
+- eks.self_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data
+Downloading registry.terraform.io/terraform-aws-modules/vpc/aws 2.66.0 for vpc...
+- vpc in .terraform/modules/vpc
+╷
+│ Error: Unsupported Terraform Core version
+│ 
+│   on versions.tf line 34, in terraform:
+│   34:   required_version = "1.1.5"
+│ 
+│ This configuration does not support Terraform version 1.3.9. To proceed,
+│ either choose another supported Terraform version or update this version
+│ constraint. Version constraints are normally set for good reason, so
+│ updating the constraint may lead to other errors or unexpected behavior.
+╵
