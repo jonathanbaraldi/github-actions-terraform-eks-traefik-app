@@ -879,3 +879,82 @@ Downloading registry.terraform.io/terraform-aws-modules/vpc/aws 2.66.0 for vpc..
 │ constraint. Version constraints are normally set for good reason, so
 │ updating the constraint may lead to other errors or unexpected behavior.
 ╵
+
+~~~~
+
+
+
+
+
+
+- Passei para:
+required_version = "1.3.9"
+
+
+
+
+
+
+
+
+- Agora o erro é:
+
+~~~~bash
+0s
+3s
+Run terraform apply -auto-approve
+/home/runner/work/_temp/31716924-4680-46d3-adc8-dce7c80fac18/terraform-bin apply -auto-approve
+╷
+│ Error: Unsupported argument
+│ 
+│   on eks-cluster.tf line 5, in module "eks":
+│    5:   subnets         = module.vpc.public_subnets
+│ 
+│ An argument named "subnets" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│ 
+│   on eks-cluster.tf line 14, in module "eks":
+│   14:   workers_group_defaults = {
+│ 
+│ An argument named "workers_group_defaults" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│ 
+│   on eks-cluster.tf line 18, in module "eks":
+│   18:   worker_groups = [
+│ 
+│ An argument named "worker_groups" is not expected here.
+╵
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+Warning: The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+Error: Terraform exited with code 1.
+Error: Process completed with exit code 1.
+~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+~> 0.14
+
+
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.0
