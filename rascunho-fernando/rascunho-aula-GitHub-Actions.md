@@ -965,9 +965,12 @@ Error: Process completed with exit code 1.
 
 
 
+- PR com problemas, ficando em QUEUED os jobs, devido incidente no Github.
+
 
 
 # PENDENTE
+- PR com problemas, ficando em QUEUED os jobs, devido incidente no Github.
 - Ver sobre TERRAFORM VERSION.
 - Pegar versão especifica no pipeline do Actions, para ele nao pegar a ultima versão do Terraform:
             with:
